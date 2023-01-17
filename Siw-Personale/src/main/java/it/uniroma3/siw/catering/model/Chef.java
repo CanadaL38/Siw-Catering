@@ -79,4 +79,7 @@ public class Chef {
 	public void setBuffets(List<Buffet> buffets) {
 		this.buffets = buffets;
 	}
+	public void addBuffet(Buffet buffet) {
+		this.buffets.add(buffet);
+	}
 }

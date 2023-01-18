@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Buffet</title>
+</head>
+
+<body>
+	<header id="header-buffet">
+		<nav id="menu_bar">
+			<a href="/" class="info_button">HOME</a> <a href="/user/all_Chefs"
+				class="simple_button">Indietro</a>
+		</nav>
+		<h1 th:text="${buffet.nome}></h1>
+		<h3 th:text="${buffet.descrizione}"></h3>
+
+		<div id="desc">
+			Piatti presenti nel buffet <strong th:text="${buffet.nome} "></strong>
+		</div>
+
+		<ul>
+			<li th:each="piatto : ${buffet.piatti}"><a
+				th:href="@{'/user/piatto'+'/'+${piatto.id}}"
+				th:text="${piatto.nome}"> </a></li>
+
+		</ul>
+	</header>
+
+</body>

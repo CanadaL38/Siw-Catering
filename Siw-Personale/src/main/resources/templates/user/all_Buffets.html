@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>I nostri Buffet</title>
+</head>
+
+<body>
+	<header id="header-buffets">
+		<nav id="menu_bar">
+			<strong id="intestazione-per-utente">I NOSTRI BUFFET:</strong>
+			<a href="/" class="info_button">HOME</a>
+		</nav> 
+		<br>
+		<div class="container-informazioni" th:each="buffet : ${buffet}" align="center">
+			<br>
+			<div>
+				<h2 th:text="${buffet.nome}">NOME</h2>
+				<h6 th:text="${buffet.descrizione}">DESCRIZIONE</h6>
+				<a th:href="@{'/user/buffet'+'/'+${buffet.id}}"class="info_button">visualizza</a>
+			</div>
+			<div>▬▬▬▬▬▬ ○ ▬▬▬▬▬▬</div>
+		</div>
+		<br>
+	</header>
+	
+</body>

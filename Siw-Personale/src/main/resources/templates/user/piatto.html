@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Piatto</title>
+</head>
+
+<body>
+	<header id="header-piatto">
+		<nav id="menu_bar">
+			<strong id="intestazione-per-utente">Piatto:</strong>
+			<a href="/" class="info_button">HOME</a>
+		</nav> 
+		<br>
+		<div class="container-informazioni" align="center">
+			<br>
+			<div>
+				<h2 th:text="${piatto.nome}">NOME</h2>
+				<h6 th:text="${piatto.descrizione}">DESCRIZIONE</h6>
+				<h6 th:text="${piatto.calorie}">CALORIE</h6>
+				<div id="desc">
+        	Ingredienti presenti nel piatto:
+        </div>
+
+		<ul>
+			<li th:each="ingrediente : ${piatto.ingredienti}">
+
+				<a th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + '). Calorie: ' + ${ingrediente.calorie}"> </a>
+			</li>
+
+		</ul>
+
+	</div>
+			
+		<br>
+	</header>
+	
+</body>

@@ -21,7 +21,7 @@ public class Buffet {
 	private Long id;
 	
 	@NotBlank
-	private String tipologia;
+	private String nome;
 	
 	private String descrizione;
 	
@@ -29,10 +29,10 @@ public class Buffet {
 	private Chef chef;
 	
 	public String getTipologia() {
-		return tipologia;
+		return nome;
 	}
 	public void setTipologia(String tipologia) {
-		this.tipologia = tipologia;
+		this.nome = tipologia;
 	}
 	public Chef getChef() {
 		return chef;
@@ -52,7 +52,7 @@ public class Buffet {
 		this(tipologia, null);
 	}
 	public Buffet(String tipologia, Chef chef) {
-		this.tipologia=tipologia;
+		this.nome=tipologia;
 		this.chef=chef;
 		this.piatti=new ArrayList<>();
 	}

@@ -35,6 +35,11 @@ public class Piatto {
 	private List<Ingrediente> ingredienti;
 	
 	/*				COSTRUTTORI				*/
+	
+	public Piatto() {
+		// TODO Auto-generated constructor stub
+		this(null,null,null);
+	}
 	public Piatto(String nome, Buffet buffet) {
 		this(nome,null,buffet);
 	}
@@ -47,7 +52,7 @@ public class Piatto {
 		this.calorie=this.getCalorie();
 	}
 	
-	
+
 	public Long getId() {
 		return id;
 	}

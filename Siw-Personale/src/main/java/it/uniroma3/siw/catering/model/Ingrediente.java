@@ -31,6 +31,11 @@ public class Ingrediente {
 	
 	
 	/*				COSTRUTTORI				*/
+	public Ingrediente() {
+		// TODO Auto-generated constructor stub
+		this(null,null,null,null);
+	}
+
 	public Ingrediente(String nome, Integer calorie, Piatto piatto) {
 		this(nome,calorie,null,piatto);
 	}
@@ -42,7 +47,6 @@ public class Ingrediente {
 		this.piatto=piatto;
 		
 	}
-	
 	
 	public Long getId() {
 		return id;

@@ -16,7 +16,11 @@ import it.uniroma3.siw.catering.repository.BuffetRepository;
 public class BuffetService {
 	@Autowired
 	private BuffetRepository br;
-
+	
+	@Transactional
+	public void save(Buffet buffet) {
+		br.save(buffet);
+	}
 	@Transactional
 	public void addBuffet(Buffet b) {
 		br.save(b);
@@ -43,7 +47,7 @@ public class BuffetService {
 		this.addBuffet(buffet);
 	}
 	public boolean alreadyExists(Buffet b) {
-		return br.existsByNomeAndDescrizioneAndChef(b.getTipologia(), b.getDescrizione(), b.getChef());
+		return br.existsByNomeAndDescrizioneAndChef(b.getNome(), b.getDescrizione(), b.getChef());
 	}
 	
 	

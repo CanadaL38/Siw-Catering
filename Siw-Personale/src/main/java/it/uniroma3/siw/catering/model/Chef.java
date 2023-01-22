@@ -11,35 +11,39 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Chef {
-	/*       	VARIABILI D'ISTANZA			*/
-	@Id    
-	@GeneratedValue(strategy=GenerationType.AUTO) 
+	/* VARIABILI D'ISTANZA */
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long id;
-	
+
 	@NotBlank
 	private String nome;
-	
+
 	@NotBlank
 	private String cognome;
-	
+
 	@NotBlank
 	private String nazionalità;
-	
-	@OneToMany(mappedBy="chef")
+
+	@OneToMany(mappedBy = "chef")
 	private List<Buffet> buffets;
-	
-	/*				COSTRUTTORI				*/
+
+	/* COSTRUTTORI */
+	public Chef() {
+		// TODO Auto-generated constructor stub
+		this(null, null, null);
+	}
+
 	public Chef(String nome, String cognome) {
-		this(nome,cognome,null);
+		this(nome, cognome, null);
 	}
 
 	public Chef(String nome, String cognome, String nazionalità) {
-		this.nome=nome;
-		this.cognome=cognome;
-		this.nazionalità=nazionalità;
+		this.nome = nome;
+		this.cognome = cognome;
+		this.nazionalità = nazionalità;
 	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -79,6 +83,7 @@ public class Chef {
 	public void setBuffets(List<Buffet> buffets) {
 		this.buffets = buffets;
 	}
+
 	public void addBuffet(Buffet buffet) {
 		this.buffets.add(buffet);
 	}

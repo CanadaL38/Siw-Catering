@@ -42,5 +42,8 @@ public class IngredienteService {
 	public boolean alreadyExists(Ingrediente ingrediente) {
 		return ir.existsByNomeAndDescrizioneAndCalorie(ingrediente.getNome(), ingrediente.getDescrizione(), ingrediente.getCalorie());
 	}
+	public Ingrediente findById(Long id) {
+		return ir.findById(id).get();
+	}
 	
 }

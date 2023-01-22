@@ -27,12 +27,29 @@ public class Buffet {
 	
 	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
 	private Chef chef;
+	@OneToMany(mappedBy = "buffet", fetch = FetchType.EAGER)
+	protected List<Piatto> piatti;
 	
-	public String getTipologia() {
+	/*				COSTRUTTORI				*/
+	public Buffet() {
+		// TODO Auto-generated constructor stub
+		this(null,null);
+	}
+	public Buffet(String nome) {
+		this(nome, null);
+	}
+	public Buffet(String nome, Chef chef) {
+		this.nome=nome;
+		this.chef=chef;
+		this.piatti=new ArrayList<>();
+	}
+	
+	/*			GETTERS AND SETTERS*/
+	public String getNome() {
 		return nome;
 	}
-	public void setTipologia(String tipologia) {
-		this.nome = tipologia;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 	public Chef getChef() {
 		return chef;
@@ -44,18 +61,6 @@ public class Buffet {
 		this.id = id;
 	}
 
-	@OneToMany(mappedBy = "buffet", fetch = FetchType.EAGER)
-	protected List<Piatto> piatti;
-	
-	/*				COSTRUTTORI				*/
-	public Buffet(String tipologia) {
-		this(tipologia, null);
-	}
-	public Buffet(String tipologia, Chef chef) {
-		this.nome=tipologia;
-		this.chef=chef;
-		this.piatti=new ArrayList<>();
-	}
 	
 				
 	public Long getId() {

@@ -20,6 +20,9 @@ public class PiattoService {
 	PiattoRepository pr;
 	@Autowired
 	IngredienteRepository ir;
+	@Autowired
+	BuffetService bs;
+	
 	@Transactional
 	public void save(Piatto piatto) {
 		pr.save(piatto);
@@ -45,5 +48,14 @@ public class PiattoService {
 	
 	public boolean alredyExists(Piatto piatto) {
 		return this.pr.existsByNomeAndBuffet(piatto.getNome(), piatto.getBuffet());
+	}
+	public void addPiatto(Piatto piatto) {
+		this.save(piatto);
+		
+	}
+	public void deletePiatto(Long id) {
+		// TODO Auto-generated method stub
+		List<Piatto> piatti=this.findAllByBuffet(this.bs.findById(id));
+
 	}
 }

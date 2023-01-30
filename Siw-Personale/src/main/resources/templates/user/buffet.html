@@ -20,10 +20,40 @@
 
 		<ul>
 			<li th:each="piatto : ${buffet.piatti}"><a
-				th:href="@{'/user/piatto'+'/'+${piatto.id}}"
+				th:href="@{'/user/all_Chefs/chef/buffet/piatto/'+ ${piatto.id}}"
 				th:text="${piatto.nome}"> </a></li>
-
 		</ul>
+		
 	</header>
+		<footer>
+		<div id="contatti">
+			<div class="contatti">
+				<h2>CONTATTI</h2>
+
+				<div class="white-text">
+			      <strong>Indirizzo:</strong> Via Sistemi Informativi sul Web, 123, 00143 Roma (RM) 
+			    </div>
+
+			    <div class="white-text">
+			    	<strong>Telefono:</strong> 06 50513232
+			    </div>
+
+			    <div class="white-text">
+			    	<strong>Email:</strong> catering.siw@gmail.com
+			    </div>
+
+			</div>
+			<div class="contatti">
+				<h2>SOCIAL</h2>
+			    <div>
+			     <a class="other_button" href="https://www.instagram.com/"><strong>Instagram:</strong>@CateringSiw</a>
+			    </div>
+
+			    <div>
+			    	<a class="other_button" href="https://www.facebook.com/"><strong>Facebook:</strong>@CateringSiw</a>
+			    </div>
+			</div>
+		</div>
+	</footer>
 
 </body>

@@ -10,8 +10,7 @@ import it.uniroma3.siw.catering.model.Piatto;
 public interface IngredienteRepository extends CrudRepository<Ingrediente, Long>{
 
 	public List<Ingrediente> findByPiatto(Piatto p);
-
-	public boolean existsByNomeAndDescrizioneAndCalorie(String nome, String descrizione, long calorie);
+	public boolean existsByNomeAndOrigine(String nome, String origine);
 
 
 }

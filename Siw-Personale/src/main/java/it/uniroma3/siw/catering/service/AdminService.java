@@ -28,7 +28,7 @@ public class AdminService {
         return result.orElse(null);
     }
 
-        @Transactional
+   @Transactional
     public Admin saveAdmin(Admin admin) {
         return this.adminRepository.save(admin);
     }

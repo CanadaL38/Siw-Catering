@@ -2,9 +2,11 @@ package it.uniroma3.siw.catering.controller;
 
 import java.util.List;
 
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -15,9 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.catering.model.Buffet;
 import it.uniroma3.siw.catering.model.Chef;
+import it.uniroma3.siw.catering.repository.BuffetRepository;
 import it.uniroma3.siw.catering.service.BuffetService;
 import it.uniroma3.siw.catering.service.ChefService;
+import it.uniroma3.siw.catering.service.IngredienteService;
 import it.uniroma3.siw.catering.validator.BuffetValidator;
+
 
 @Controller
 public class BuffetController {
@@ -26,22 +31,24 @@ public class BuffetController {
 	@Autowired
 	private ChefService cs;
 	@Autowired
+	private IngredienteService is;
+	@Autowired
 	private BuffetValidator bv;
+	@Autowired
+	private BuffetRepository br;
 	/* Sezione USER */
 
 	/* Visualizza un buffet */
-	@GetMapping("/user/buffet/{id}")
+	@GetMapping("/user/all_Chefs/chef/buffet/{id}")
 	public String getBuffet(@PathVariable("id") Long id, Model model) {
 		Buffet buffet = bs.findById(id);
 		model.addAttribute("buffet", buffet);
 		return "/user/buffet.html";
 	}
-
-	/* Visualizza tutti i buffet */
 	@GetMapping("/user/all_Buffets")
-	public String getBuffets(Model model) {
+	public String getChefs(Model model) {
 		List<Buffet> buffets = bs.findAll();
-		model.addAttribute(buffets);
+		model.addAttribute("buffets", buffets);
 		return "/user/all_Buffets.html";
 	}
 
@@ -52,37 +59,36 @@ public class BuffetController {
 		model.addAttribute("buffets", this.bs.findAll());
 		return "/admin/Buffet/GestioneBuffet.html";
 	}
-
+	
 	/* Accesso alla form per la creazione di un buffet */
-	@GetMapping("/admin/buffet_managment/add/id")
+	@GetMapping("/admin/GestioneBuffet/add/{id}")
 	public String getBuffetForm(@PathVariable("id") Long chef_id, Model model) {
 		Buffet nuovoBuffet = new Buffet();
 		model.addAttribute("buffet", nuovoBuffet);
 		model.addAttribute("chef_id", chef_id);
-		return "/admin/Buffet/buffetForm.html";
+		return "/admin/Buffet/BuffetForm.html";
 	}
 
 	/* Aggiunta buffet db */
-	@PostMapping("/admin/GestioneBuffet/add/{id}")
-	public String addBuffet(@PathVariable("id") Long id, @Valid @ModelAttribute("buffet") Buffet buffet,
+	@PostMapping("/admin/GestioneBuffet/add/{chef_id}")
+	public String addBuffet(@PathVariable("chef_id") Long id, @Valid @ModelAttribute("buffet") Buffet buffet,
 			BindingResult bindingResults, Model model) {
-		bv.validate(buffet, bindingResults);
+		    bv.validate(buffet, bindingResults);
 		if (!bindingResults.hasErrors()) {
 			Chef chef = this.cs.findById(id);
 			chef.addBuffet(buffet);
 			buffet.setChef(chef);
 			this.bs.save(buffet);
-			model.addAttribute("buffet", model);
-			return "redirect:/admin/Buffet/buffetManagment";
+			model.addAttribute("buffet", buffet);
+			return "/admin/Buffet/GestioneBuffet";
 		}
-		return "/admin/Buffet/buffetForm.html";
+		return "/admin/Buffet/BuffetForm.html";
 	}
-
-	/* Visualizza tutti i buffet per modificarli */
-	@GetMapping("/admin/GestioneBuffet/indexBuffet")
-	public String getIndexBuffetModify(Model model) {
-		model.addAttribute("buffets", bs.findAll());
-		return "/admin/Buffet/indexBuffetModify.html";
-	}
-
+	@GetMapping("/admin/GestioneBuffet/delete/{id}")
+	  public String deleteBuffet(@PathVariable("id") Long id, Model model) {
+		 Buffet buffet=bs.findById(id);
+		 br.delete(buffet);
+		 return "/admin/Buffet/GestioneBuffet";
+	  }
+	
 }

@@ -25,8 +25,6 @@ public class Piatto {
 	
 	private String descrizione;
 	
-	@NotBlank
-	private long calorie;
 	
 	@ManyToOne
 	private Buffet buffet;
@@ -37,7 +35,6 @@ public class Piatto {
 	/*				COSTRUTTORI				*/
 	
 	public Piatto() {
-		// TODO Auto-generated constructor stub
 		this(null,null,null);
 	}
 	public Piatto(String nome, Buffet buffet) {
@@ -49,10 +46,9 @@ public class Piatto {
 		this.descrizione=descrizione;
 		this.buffet=buffet;
 		this.ingredienti=new ArrayList<>();
-		this.calorie=this.getCalorie();
+		
 	}
 	
-
 	public Long getId() {
 		return id;
 	}
@@ -100,12 +96,6 @@ public class Piatto {
 	public void removeIngrediente(Ingrediente ingrediente) {
 		this.ingredienti.remove(ingrediente);
 	}
-	public long getCalorie() {
-		long totale=0;
-		for(Ingrediente i: this.ingredienti) {
-			totale+=i.getCalorie();
-		}
-		return totale;
-	}
+	
 	
 }

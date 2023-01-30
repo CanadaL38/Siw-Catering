@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/login.css" />
+	<title>Log In</title>
+</head>
+<body>
+	<nav class="navbar navbar-expand-lg navbar-light">
+  		<div class="container-fluid">
+    		<strong class="navbar-brand">Log In Page</strong>
+    			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      			<span class="navbar-toggler-icon"></span>
+    			</button>
+    	<div class="collapse navbar-collapse" id="navbarNav">
+      		<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        		<li class="nav-item">
+          			<a class="nav-link active" aria-current="page" href="#"></a>
+        		</li>
+        		<li class="signin-button">
+          			<a class="signin-button" href="/">HOME</a>
+        		</li>
+      		</ul>
+    	</div>
+  	</div>
+	</nav>
+	<br>
+	<div class="container">
+	<div class="row">
+	<div class="col-lg-6 border border-primary container justify-content-center card">
+	<div align="center"><h1>INSERISCI I DATI</h1></div>	
+	<div class="card-body">
+	<form th:action="@{/login}" method="POST">
+		<div>
+			<div >
+				<span class="form-label">Username:</span>
+				<span><input name="username" type="text" required class="form-text form-control" /></span>
+			</div>
+			<br>	
+			<div>
+				<span class="form-label">Password:</span>
+				<span><input name="password" type="password" required class="form-text form-control"/></span>
+			</div>
+			<br>
+			<div class="alert" th:if="${errorMessage}" th:text="${errorMessage}"></div>
+			<div align="center">
+				<span><button type="submit" class="btn btn-success">Login</button></span>
+			</div>
+		</div>
+	</form>
+</div>
+</div>
+</div>
+</div>
+</body>
+</html>

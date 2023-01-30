@@ -7,8 +7,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import it.uniroma3.siw.catering.model.Admin;
 import it.uniroma3.siw.catering.model.Credentials;
 import it.uniroma3.siw.catering.repository.CredentialsRepository;
+import it.uniroma3.siw.catering.validator.CredentialsValidator;
 
 @Service
 public class CredentialsService {
@@ -18,6 +20,7 @@ public class CredentialsService {
 
 	@Autowired
 	protected CredentialsRepository credentialsRepository;
+	
 	
 	@Transactional
 	public Credentials getCredentials(Long id) {
@@ -37,4 +40,5 @@ public class CredentialsService {
         credentials.setPassword(this.passwordEncoder.encode(credentials.getPassword()));
         return this.credentialsRepository.save(credentials);
     }
+   
 }

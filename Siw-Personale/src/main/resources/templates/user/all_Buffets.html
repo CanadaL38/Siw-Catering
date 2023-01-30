@@ -4,25 +4,66 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>I nostri Buffet</title>
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 </head>
-
 <body>
-	<header id="header-buffets">
+	<header id="header-buffet">
 		<nav id="menu_bar">
-			<strong id="intestazione-per-utente">I NOSTRI BUFFET:</strong>
+			<strong id="intestazione-per-utente">ECCO I NOSTRI BUFFET:</strong>
 			<a href="/" class="info_button">HOME</a>
 		</nav> 
 		<br>
-		<div class="container-informazioni" th:each="buffet : ${buffet}" align="center">
+		<div class="container-informazioni" th:each="buffet : ${buffet}">
 			<br>
 			<div>
-				<h2 th:text="${buffet.nome}">NOME</h2>
-				<h6 th:text="${buffet.descrizione}">DESCRIZIONE</h6>
-				<a th:href="@{'/user/buffet'+'/'+${buffet.id}}"class="info_button">visualizza</a>
+				<h1 th:text="${buffet.nome}">Nome Buffet</h1>
 			</div>
-			<div>▬▬▬▬▬▬ ○ ▬▬▬▬▬▬</div>
+			<div align="center">
+				<label>buffet offerto dallo chef:</label>
+				<a th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}" 
+				th:href="@{/user/all_Chefs/chef/{chef_id}(chef_id=${buffet.chef.id})}" class="simple_button outlined">chefNome chefCognome</a>
+			</div>
+			<div class="descrizione" align="center">
+				<h3 th:text="${buffet.descrizione}">descrizione del buffet</h3>
+			</div>
+			<div align="center"><a class="btn btn-primary" th:href="@{/user/all_Chefs/chef/buffet/{id}(id=${buffet.id})}">vedi menù</a></div>
+			<br>
 		</div>
 		<br>
 	</header>
-	
+	<footer class="footer">
+		<div id="contatti">
+			<div class="contatti">
+				<h2>CONTATTI</h2>
+
+				<div class="white-text">
+			      <strong>Indirizzo:</strong> Via Sistemi Informativi sul Web, 123, 00143 Roma (RM) 
+			    </div>
+
+			    <div class="white-text">
+			    	<strong>Telefono:</strong> 06 50513232
+			    </div>
+
+			    <div class="white-text">
+			    	<strong>Email:</strong> catering.siw@gmail.com
+			    </div>
+
+			</div>
+			<div class="contatti">
+				<h2>SOCIAL</h2>
+			    <div>
+			     <a class="other_button" href="https://www.instagram.com/"><strong>Instagram:</strong>@CateringSiw</a>
+			    </div>
+
+			    <div>
+			    	<a class="other_button" href="https://www.facebook.com/"><strong>Facebook:</strong>@CateringSiw</a>
+			    </div>
+			</div>
+		</div>
+	</footer>
 </body>
+</html>

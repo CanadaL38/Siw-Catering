@@ -5,75 +5,77 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
 import it.uniroma3.siw.catering.model.Ingrediente;
-import it.uniroma3.siw.catering.repository.IngredienteRepository;
 import it.uniroma3.siw.catering.service.IngredienteService;
-import it.uniroma3.siw.catering.service.PiattoService;
 import it.uniroma3.siw.catering.validator.IngredienteValidator;
 
+@Controller
 public class IngredienteController {
 	@Autowired
 	private IngredienteService is;
 	@Autowired
-	private PiattoService ps;
-	@Autowired
 	private IngredienteValidator iv;
-	@Autowired
-	private IngredienteRepository ir;
 
-	@PostMapping("/admin/GestioneChef/add")
-	public String addIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,
-			BindingResult bindingResults, Model model) {
-		iv.validate(ingrediente, bindingResults);
-		if (!bindingResults.hasErrors()) {
-			ir.save(ingrediente);
-			model.addAttribute("ingrediente", ingrediente);
-			return "redirect:/admin/Ingrediente/all_Ingredienti";
-		}
-		return "admin/Ingrediente/IngredienteForm.html";
+	/* SEZIONE ADMIN */
+	/* Accesso alla gestione del buffet */
+	@GetMapping("/admin/GestioneIngrediente")
+	public String getGestioneIngrediente(Model model) {
+		model.addAttribute("ingredienti", this.is.findAll());
+		return "/admin/Ingrediente/GestioneIngrediente.html";
 	}
-
-	@PostMapping("/admin/GestioneBuffet/addIngrediente/{id}")
-	public String addIngredienteAPiatto(@PathVariable("id") Long id,
-			@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResults, Model model) {
-		iv.validate(ingrediente, bindingResults);
-		if (!bindingResults.hasErrors()) {
-			ps.findById(id).getIngredienti().add(ingrediente);
-			ps.addPiatto(ps.findById(id));
-			model.addAttribute("ingrediente", ingrediente);
-			return "redirect:/admin/GestioneBuffet/GestionePiatto/all_Ingredienti/" + id;
-		}
-		return "admin/Ingrediente/IngredienteFormPerPiatto.html"; // ?
-	}
-
-	@GetMapping("/admin/all_Ingredienti")
+	@GetMapping("/admin/GestioneIngrediente/add")
 	public String getIngredienteForm(Model model) {
-		model.addAttribute("ingrediente", new Ingrediente());
-		return "admin/ingrediente/ingredienteForm.html";
+		Ingrediente ingrediente=new Ingrediente();
+		model.addAttribute("ingrediente", ingrediente);
+		return "/admin/Ingrediente/IngredienteForm";
 	}
-
-	@GetMapping("/admin/ingredienteForm/{id}")
-	public String getIngredienteFormPerPiatto(@PathVariable("id") Long id, Model model) {
-		model.addAttribute("ingrediente", new Ingrediente());
-		model.addAttribute("piatto_id", id);
-		return "admin/Ingrediente/ingredienteFormPerPiatto.html";
+	@PostMapping("/admin/GestioneIngrediente/add")
+	public String addIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente, BindingResult bindingResults, Model model) {
+		this.iv.validate(ingrediente, bindingResults);
+		if(!bindingResults.hasErrors()) {
+			this.is.save(ingrediente);
+			model.addAttribute("ingrediente", model);
+			return "/admin/Ingrediente/GestioneIngrediente";
+		}
+		else
+			return "/admin/Ingrediente/IngredienteForm.html";
 	}
-	@GetMapping("/admin/GestioneIngrediente/indexIngrediente")
-	public String getindexIngrediente(Model model) {
-		model.addAttribute("ingredienti", is.findAll());
-		return "admin/Ingrediente/indexIngrediente.html";
+	@GetMapping("/admin/GestioneIngrediente/edit/{ingred_id}")
+	public String getEditIngredienteForm(@PathVariable("ingred_id") Long id, Model model) {
+		model.addAttribute("ingrediente", this.is.findById(id));
+		return "/admin/Ingrediente/EditIngrediente.html";
 	}
-
-	 @GetMapping("/admin/GestioneBuffet/GestionePiatto/removeIngrediente/{id1}/{id2}")
-	  public String removeIngredienteDaPiatto(@PathVariable("id1") Long id1, @PathVariable("id2") Long id2, Model model) {
-		  ps.findById(id2).getIngredienti().remove(is.findById(id1));
-		  ps.addPiatto(ps.findById(id2));
-		  return "redirect:/admin/indexAdmin";
-	  }
+	
+	/* metodo che inserisce l'ingrediente aggiornato nella base di dati */
+	@PostMapping("/admin/GestioneIngrediente/edit/{ingr_id}")
+	public String editIngrediente(@PathVariable("ingr_id") Long id, @Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,
+			BindingResult bindingResults, Model model) {
+		if(!bindingResults.hasErrors()) {
+			Ingrediente nuovoIngrediente = new Ingrediente();
+			nuovoIngrediente.setId(id);
+			nuovoIngrediente.setNome(ingrediente.getNome());
+			nuovoIngrediente.setDescrizione(ingrediente.getDescrizione());
+			nuovoIngrediente.setOrigine(ingrediente.getOrigine());
+			this.is.save(nuovoIngrediente);
+			return "/admin/Ingrediente/GestioneIngrediente";
+		}
+		
+		return "/admin/Ingrediente/EditIngrediente.html";
+	}
+	
+	/* metodo per eliminare un ingrediente e i piatti che lo contengono */
+	@GetMapping("/admin/GestioneIngrediente/delete/{ingred_id}")
+	public String deleteIngrediente(@PathVariable Long ingred_id) {
+		this.is.deleteIngrediente(ingred_id);
+		return "/admin/Ingrediente/GestioneIngrediente";
+	}
+	
 }

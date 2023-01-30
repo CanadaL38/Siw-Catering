@@ -20,6 +20,8 @@ public class IngredienteService {
 	private PiattoRepository pr;
 	@Autowired
 	private IngredienteRepository ir;
+	@Autowired
+	private PiattoService ps;
 
 	@Transactional
 	public void save(Ingrediente ingrediente) {
@@ -40,10 +42,14 @@ public class IngredienteService {
 		return ingredienti;
 	}
 	public boolean alreadyExists(Ingrediente ingrediente) {
-		return ir.existsByNomeAndDescrizioneAndCalorie(ingrediente.getNome(), ingrediente.getDescrizione(), ingrediente.getCalorie());
+		return ir.existsByNomeAndOrigine(ingrediente.getNome(), ingrediente.getOrigine());
 	}
 	public Ingrediente findById(Long id) {
 		return ir.findById(id).get();
+	}
+	public void deleteIngrediente(Long id) {
+		ps.deletePiatti(findById(id));
+		ir.deleteById(id);
 	}
 	
 }

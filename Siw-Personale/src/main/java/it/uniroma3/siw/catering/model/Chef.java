@@ -23,7 +23,7 @@ public class Chef {
 	private String cognome;
 
 	@NotBlank
-	private String nazionalità;
+	private String nazionalita;
 
 	@OneToMany(mappedBy = "chef")
 	private List<Buffet> buffets;
@@ -38,10 +38,10 @@ public class Chef {
 		this(nome, cognome, null);
 	}
 
-	public Chef(String nome, String cognome, String nazionalità) {
+	public Chef(String nome, String cognome, String nazionalita) {
 		this.nome = nome;
 		this.cognome = cognome;
-		this.nazionalità = nazionalità;
+		this.nazionalita = nazionalita;
 	}
 
 	public Long getId() {
@@ -68,12 +68,12 @@ public class Chef {
 		this.cognome = cognome;
 	}
 
-	public String getNazionalità() {
-		return nazionalità;
+	public String getNazionalita() {
+		return nazionalita;
 	}
 
-	public void setNazionalità(String nazionalità) {
-		this.nazionalità = nazionalità;
+	public void setNazionalita(String nazionalita) {
+		this.nazionalita = nazionalita;
 	}
 
 	public List<Buffet> getBuffets() {

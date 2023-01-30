@@ -20,8 +20,7 @@ public class PiattoService {
 	PiattoRepository pr;
 	@Autowired
 	IngredienteRepository ir;
-	@Autowired
-	BuffetService bs;
+
 	
 	@Transactional
 	public void save(Piatto piatto) {
@@ -54,8 +53,12 @@ public class PiattoService {
 		
 	}
 	public void deletePiatto(Long id) {
-		// TODO Auto-generated method stub
-		List<Piatto> piatti=this.findAllByBuffet(this.bs.findById(id));
-
+		pr.deleteById(id);
 	}
+	public void deletePiatti(Ingrediente i) {
+		List<Piatto> piatti = pr.findByIngredienti(i);
+		for(Piatto p: piatti)
+			this.deletePiatto(p.getId());
+	}
+	
 }

@@ -28,7 +28,7 @@ public class ChefController {
 	private ChefRepository cr;
 
 	/* SEZIONE USER */
-	@GetMapping("/user/chef/{id}")
+	@GetMapping("/user/all_Chefs/chef/{id}")
 	public String getChef(@PathVariable("id") Long id, Model model) {
 		Chef chef = cs.findById(id);
 		model.addAttribute("chef", chef);
@@ -48,21 +48,55 @@ public class ChefController {
 		model.addAttribute("chefs", this.cs.findAll());
 		return "/admin/Chef/GestioneChef.html";
 	}
-
+	
+	@GetMapping("/admin/GestioneChef/add")
+	public String getChefForm(Model model) {
+		Chef nuovoChef = new Chef();
+		model.addAttribute("chef", nuovoChef);
+		return "/admin/Chef/ChefForm.html";
+	}
+	
 	@PostMapping("/admin/GestioneChef/add")
 	public String addChef(@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResults, Model model) {
-		cv.validate(chef, bindingResults);
-		if (!bindingResults.hasErrors()) {
-			cr.save(chef);
+		cv.validate(chef,  bindingResults);
+		if(!bindingResults.hasErrors()) {
+			this.cs.aggiungiChef(chef);
 			model.addAttribute("chef", chef);
-			return "redirect:/admin/all_Chefs";
+
+			return "/admin/Admin_index";
 		}
 		return "admin/Chef/ChefForm.html";
 	}
 	
-	@GetMapping("/admin/GestioneChef/edit")
-	public String getindexChef(Model model) {
-		model.addAttribute("chefs", cs.findAll());
-		return "admin/Chef/indexChefModify.html";
+	@GetMapping("/admin/GestioneChef/edit/{id}")
+	public String getEditChefForm(@PathVariable("id") Long chef_id, Model model) {
+		Chef chef = cs.findById(chef_id);
+		model.addAttribute("chef", chef);
+		return "/admin/Chef/EditChef.html";
+	}
+	
+	
+	@PostMapping("/admin/GestioneChef/edit/{chef_id}")
+	public String editChef(@PathVariable("chef_id") Long id,@Valid @ModelAttribute("chef") Chef chef, 
+			BindingResult bindingResults, Model model) {
+		if(!bindingResults.hasErrors()) {
+			Chef nuovoChef = this.cs.findById(id);
+			nuovoChef.setId(id);
+			nuovoChef.setNome(chef.getNome());
+			nuovoChef.setCognome(chef.getCognome());
+			nuovoChef.setNazionalita(chef.getNazionalita());
+			this.cs.editChef(nuovoChef);
+			model.addAttribute("chef", chef);
+			return "/admin/Chef/GestioneChef";
+		}
+		else
+			return "/admin/Chef/EditChef.html";
+	}
+	
+
+	@GetMapping("/admin/GestioneChef/delete/{id}")
+	public String deleteChef(@PathVariable("id") Long chef_id) {
+		this.cs.deleteChefById(chef_id);
+		return "/admin/Chef/GestioneChef";
 	}
 }

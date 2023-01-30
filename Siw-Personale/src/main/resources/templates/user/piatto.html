@@ -26,7 +26,7 @@
 		<ul>
 			<li th:each="ingrediente : ${piatto.ingredienti}">
 
-				<a th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + '). Calorie: ' + ${ingrediente.calorie}"> </a>
+				<a th:text="${ingrediente.nome} + ' (' + ${ingrediente.descrizione} + '). Calorie: ' + ${ingrediente.calorie}.Origine: ' + ${ingrediente.origine}"> </a>
 			</li>
 
 		</ul>

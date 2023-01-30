@@ -1,7 +1,6 @@
 package it.uniroma3.siw.catering.model;
 
 import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -22,29 +21,31 @@ public class Ingrediente {
 	private String nome;
 	
 	@NotBlank
-	private long calorie;
-	
+	private String origine;
+
 	private String descrizione;
 	
-	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne
 	private Piatto piatto;
+	
+	
 	
 	
 	/*				COSTRUTTORI				*/
 	public Ingrediente() {
 		// TODO Auto-generated constructor stub
-		this(null,null,null,null);
+		this(null,null,null,null,null);
 	}
 
-	public Ingrediente(String nome, Integer calorie, Piatto piatto) {
-		this(nome,calorie,null,piatto);
+	public Ingrediente(String nome, Piatto piatto, String origine, Long calorie) {
+		this(nome,null,piatto,origine,calorie);
 	}
 	
-	public Ingrediente(String nome, Integer calorie, String descrizione, Piatto piatto) {
+	public Ingrediente(String nome,String descrizione, Piatto piatto, String origine, Long calorie) {
 		this.nome=nome;
-		this.calorie=calorie;
 		this.descrizione=descrizione;
 		this.piatto=piatto;
+		this.origine=origine;
 		
 	}
 	
@@ -64,13 +65,6 @@ public class Ingrediente {
 		this.nome = nome;
 	}
 
-	public long getCalorie() {
-		return calorie;
-	}
-
-	public void setCalorie(Integer calorie) {
-		this.calorie = calorie;
-	}
 
 	public String getDescrizione() {
 		return descrizione;
@@ -88,6 +82,15 @@ public class Ingrediente {
 		this.piatto = piatto;
 	}
 
+	
+	public String getOrigine() {
+		return origine;
+	}
+
+	public void setOrigine(String origine) {
+		this.origine = origine;
+	}
+	
 	
 	
 	

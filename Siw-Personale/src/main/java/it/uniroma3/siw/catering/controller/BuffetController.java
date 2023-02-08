@@ -47,8 +47,7 @@ public class BuffetController {
 	}
 	@GetMapping("/user/all_Buffets")
 	public String getChefs(Model model) {
-		List<Buffet> buffets = bs.findAll();
-		model.addAttribute("buffets", buffets);
+		model.addAttribute("buffets", bs.findAll());
 		return "/user/all_Buffets.html";
 	}
 

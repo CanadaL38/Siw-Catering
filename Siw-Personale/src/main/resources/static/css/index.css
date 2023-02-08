@@ -6,7 +6,6 @@
 	padding: 0px;
 	box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-
 }
 :root{
 	--main-color:#f0b30f;
@@ -17,6 +16,7 @@
 .navbar-brand{
 	color: var(--main-color) !important;
 }
+
 .act{
 	color: var(--main-color) !important;
 	border-bottom: 2px solid var(--main-color);
@@ -52,11 +52,19 @@
 .flex-image-item{
   display: flex;
   align-items: center;
-  background-color:#51433E;
   width: 50%;
+  background-color:#D3D3D3;
   text-align: center;
   flex-grow: 1;
 }
+.flex-image-item1{
+  justify-content:center;
+  align-content:center;
+  width: 50%;
+  background-color:#D3D3D3;
+ 
+}
+
 .flex-text-item{
   display: flex;
   align-items: center;
@@ -127,10 +135,21 @@
 .contatti h2 {
   color: var(--main-color) !important;
 }
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
 footer {
   background-color: #641c34 ;
   width: 100%;
 }
+a{
+	color: var(--main-color) !important;
+	text-decoration: none;
+}
+
 #immagine_chef{
   background-image: url("/img/chef1.jpg");
   background-size: cover;
@@ -146,4 +165,14 @@ footer {
   width: 100%;
   border-radius: 3px;
   height: 100%;
+}
+
+#immagine_chef1{
+  background-image: url("/img/icona.png");
+   background-repeat: no-repeat;
+   justify-content:center;
+   align-items:center;
+  width: 60%;
+  border-radius: 3px;
+  height: 65vh;
 }

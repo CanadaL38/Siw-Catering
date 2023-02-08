@@ -1,0 +1,149 @@
+@import url('https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100;0,200;1,100&family=Poppins&display=swap');
+
+*
+{
+	margin: 0px;
+	padding: 0px;
+	box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+
+}
+:root{
+	--main-color:#f0b30f;
+}
+.theme-text{
+	color: var(--main-color);
+}
+.navbar-brand{
+	color: var(--main-color) !important;
+}
+.act{
+	color: var(--main-color) !important;
+	border-bottom: 2px solid var(--main-color);
+}
+.navbar ul li a:hover{
+	color: var(--main-color) !important;
+	border-bottom: 2px solid var(--main-color);
+}
+.header{
+	background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url("/img/admin.jpg");
+	width: 100%;
+	height: 100vh;
+	background-position: center;
+	background-size: cover;
+}
+.middle{
+	height: 100vh;
+	width: 80%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.middle h1{
+	font-size: 50px;
+	
+}
+.flex-container{
+  display:flex;
+  justify-content: center;
+  height: 480px;
+  background-color: #51433E;
+}
+.flex-image-item{
+  display: flex;
+  align-items: center;
+  background-color:#51433E;
+  width: 50%;
+  text-align: center;
+  flex-grow: 1;
+}
+.flex-text-item{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  background-color:#5A5A5A;
+  color: var(--main-color) !important;
+  width: 50%;
+  text-align: center;
+  flex-grow: 1;
+}
+
+.intestazione{
+  padding: 25px;
+  color: var(--main-color) !important;
+  font-weight: bold;
+  font-style: italic;
+  font-size: 30px;
+}
+.white-text{
+	color:white;
+}
+.paragrafo{
+  align-items: center;
+  color: white;
+  font-style: italic;
+  font-size: 20px;
+  width: 400px;
+}
+.signin-button {
+	background-color: var(--main-color) !important; 
+	color: black; 
+	padding: 1px 5px; 
+	border-radius: 25px; 
+	text-align: center; 
+	text-decoration: none;
+	display: inline-block; 
+	font-size: 16px; 
+	margin: 4px 2px; 
+	cursor: pointer; 
+}
+
+.info_button{
+  border: 2px solid var(--main-color) !important;
+  border-radius: 3px;
+  align-items: center;
+  color:var(--main-color) !important ;
+  font-size: 20px;
+  width: 110px;
+  text-decoration: none;
+  text-align: center;
+}
+.other_button{
+  border: #641c34 ;
+  border-radius: 3px;
+  align-items: center;
+  color: white ;
+  font-size: 20px;
+  width: 110px;
+  text-decoration: none;
+  text-align: center;
+}
+
+.contatti {
+  font-size: 22px;
+  padding: 3%;
+}
+
+.contatti h2 {
+  color: var(--main-color) !important;
+}
+footer {
+  background-color: #641c34 ;
+  width: 100%;
+}
+#immagine_chef{
+  background-image: url("/img/chef1.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  border-radius: 3px;
+  height: 100%;
+}
+#immagine_buffet{
+  background-image: url("/img/buffet3.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  width: 100%;
+  border-radius: 3px;
+  height: 100%;
+}

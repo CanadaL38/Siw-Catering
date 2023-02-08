@@ -14,7 +14,7 @@ import it.uniroma3.siw.catering.service.AdminService;
 
 @SpringBootApplication
 public class SiwPersonaleApplication implements CommandLineRunner {
-  @Autowired
+/*  @Autowired
 	private CredentialsRepository credentialsRepository;
   @Autowired
 	protected AdminRepository adminRepository;
@@ -22,7 +22,7 @@ public class SiwPersonaleApplication implements CommandLineRunner {
   protected PasswordEncoder passwordEncoder;
   @Autowired
   protected AdminService as;
-  
+  */
 	public static void main(String[] args) {
 		SpringApplication.run(SiwPersonaleApplication.class, args);
 	}

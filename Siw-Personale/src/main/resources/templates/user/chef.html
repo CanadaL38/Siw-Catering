@@ -3,16 +3,42 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="css/chef.css" />
+	<link rel="stylesheet" type="text/css" href="/css/index.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
 	<title>Chef</title>
 </head>
 
 <body>
-	<header id="header-chef">
-		<nav id="menu_bar">
-			<a href="/" class="info_button">HOME</a>
-			<a href="/user/all_Chefs" class="simple_button">Indietro</a>
-		</nav> 
+	<header id="header-buffet">
+		<nav class="navbar navbar-expand-lg navbar-dark ">
+  		<div class="container-fluid">
+    		<strong class="navbar-brand">Catering Siw</strong>
+    			<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      			<span class="navbar-toggler-icon"></span>
+    			</button>
+    	<div class="collapse navbar-collapse" id="navbarNav">
+      		<ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        		<li class="nav-item">
+          			<a class="nav-link active" aria-current="page" href="#"></a>
+        		</li>
+        		<li class="nav-item">
+          			<a class="nav-link" href="/user/all_Chefs">Indietro</a>
+        		</li>
+        		<li class="nav-item">
+          			<a class="nav-link" href="/">Home</a>
+        		</li>
+      		</ul>
+    	</div>
+  	</div>
+	</nav>
+		
+		<div align="center">
+      <div class="flex-image-item1">
+      	<div id="immagine_chef1"></div>
+			</div>
 		<h1 th:text="${chef.nome} + ' ' + ${chef.cognome}"></h1>
 		<h3 th:text="'Nazionalità: ' + ${chef.nazionalita}"></h3>
 
@@ -20,12 +46,10 @@
         	Buffet proposti dallo chef <strong th:text="${chef.cognome} "></strong>
         </div>
 
-		<ul>
-			<li th:each="buffet : ${chef.buffets}">             
+			<div th:each="buffet : ${chef.buffets}">             
 				<a th:href="@{'/user/all_Chefs/chef/buffet/' + ${buffet.id}}" class="info_button"> <h4 th:text="${buffet.nome}"></h4></a>
-			</li>
-
-		</ul>
+			</div>
+         </div>
 	</header>
 		<footer>
 		<div id="contatti">

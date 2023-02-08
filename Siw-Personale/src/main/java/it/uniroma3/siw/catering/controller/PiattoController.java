@@ -75,4 +75,12 @@ public class PiattoController {
 		this.ps.deletePiatto(id);
 		return "/admin/GestionePiatto/" + buffet_id;
 	}
+	@GetMapping("/user/all_Chefs/chef/buffet/piatto/{piatto_id}")
+	public String getPiatto(@PathVariable Long piatto_id, Model model) {
+		Piatto piatto = this.ps.findById(piatto_id);
+		model.addAttribute("piatto", piatto);
+		model.addAttribute("buffet_id", piatto_id);
+		return "/user/piatto.html";
+	}
+
 }

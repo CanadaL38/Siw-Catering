@@ -37,8 +37,7 @@ public class ChefController {
 
 	@GetMapping("/user/all_Chefs")
 	public String getChefs(Model model) {
-		List<Chef> chefs = cs.findAll();
-		model.addAllAttributes(chefs);
+		model.addAttribute("chefs",cs.findAll());
 		return "/user/all_Chefs.html";
 	}
 	/* SEZIONE ADMIN */

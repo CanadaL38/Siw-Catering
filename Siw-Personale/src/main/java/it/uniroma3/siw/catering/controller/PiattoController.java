@@ -40,7 +40,7 @@ public class PiattoController {
 		model.addAttribute("piatto", nuovoPiatto);
 		model.addAttribute("buffet_id", buffet_id);
 		model.addAttribute("ingredienti", this.is.findAll());
-		return "/admin/Piatto/PiattoForm.html";
+		return "admin/Piatto/PiattoForm.html";
 	}
 
 	@PostMapping("/admin/GestionePiatto/add/{buffet_id}")
@@ -55,10 +55,10 @@ public class PiattoController {
 			model.addAttribute("piatto", this.ps.findAllByBuffet(buffet));
 			model.addAttribute("buffet_id", id);
 			model.addAttribute("buffets", this.bs.findAll());
-			return "/admin/Buffet/GestioneBuffet";
+			return "admin/Buffet/GestioneBuffet";
 		} else {
 
-			return "/admin/Piatto/PiattoForm.html";
+			return "admin/Piatto/PiattoForm.html";
 		}
 	}
 
@@ -67,21 +67,21 @@ public class PiattoController {
 		Buffet buffet = this.bs.findById(buffet_id);
 		model.addAttribute("piatti", this.ps.findAllByBuffet(buffet));
 		model.addAttribute("buffet", buffet);
-		return "/admin/Piatto/GestionePiatto";
+		return "admin/Piatto/GestionePiatto";
 	}
 
 	@GetMapping("/admin/GestionePiatto/delete/{buffet_id}")
 	public String deletePiatto(@PathVariable("buffet_id") Long id, Model model) {
 		Long buffet_id = this.ps.findById(id).getBuffet().getId();
 		this.ps.deletePiatto(id);
-		return "/admin/GestionePiatto/" + buffet_id;
+		return "admin/GestionePiatto/" + buffet_id;
 	}
 	@GetMapping("/user/all_Chefs/chef/buffet/piatto/{piatto_id}")
 	public String getPiatto(@PathVariable Long piatto_id, Model model) {
 		Piatto piatto = this.ps.findById(piatto_id);
 		model.addAttribute("piatto", piatto);
 		model.addAttribute("buffet_id", piatto_id);
-		return "/user/piatto.html";
+		return "user/piatto.html";
 	}
 
 }

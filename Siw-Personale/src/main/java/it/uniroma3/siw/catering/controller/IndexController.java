@@ -28,7 +28,7 @@ public class IndexController {
 
 	@GetMapping("/login")
 	public String getAdminLogin(Model model) {
-		return "/adminLogin.html";
+		return "adminLogin.html";
 	}
 	
 	

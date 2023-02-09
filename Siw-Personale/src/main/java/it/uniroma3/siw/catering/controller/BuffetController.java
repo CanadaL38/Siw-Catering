@@ -44,12 +44,12 @@ public class BuffetController {
 	public String getBuffet(@PathVariable("id") Long id, Model model) {
 		Buffet buffet = bs.findById(id);
 		model.addAttribute("buffet", buffet);
-		return "/user/buffet.html";
+		return "user/buffet.html";
 	}
 	@GetMapping("/user/all_Buffets")
 	public String getChefs(Model model) {
 		model.addAttribute("buffets", bs.findAll());
-		return "/user/all_Buffets.html";
+		return "user/all_Buffets.html";
 	}
 
 	/* SEZIONE ADMIN */
@@ -57,7 +57,7 @@ public class BuffetController {
 	@GetMapping("/admin/GestioneBuffet")
 	public String getGestioneBuffet(Model model) {
 		model.addAttribute("buffets", this.bs.findAll());
-		return "/admin/Buffet/GestioneBuffet.html";
+		return "admin/Buffet/GestioneBuffet.html";
 	}
 	
 	/* Accesso alla form per la creazione di un buffet */
@@ -66,7 +66,7 @@ public class BuffetController {
 		Buffet nuovoBuffet = new Buffet();
 		model.addAttribute("buffet", nuovoBuffet);
 		model.addAttribute("chef_id", chef_id);
-		return "/admin/Buffet/BuffetForm.html";
+		return "admin/Buffet/BuffetForm.html";
 	}
 
 	/* Aggiunta buffet db */
@@ -81,7 +81,7 @@ public class BuffetController {
 			this.bs.save(buffet);
 			model.addAttribute("buffet", buffet);
 			model.addAttribute("buffets", this.bs.findAll());
-			return "/admin/Buffet/GestioneBuffet";
+			return "admin/Buffet/GestioneBuffet";
 		}
 		return "/admin/Buffet/BuffetForm.html";
 	}
@@ -90,7 +90,7 @@ public class BuffetController {
 		 Buffet buffet=bs.findById(id);
 		 bs.deleteBuffet(buffet.getId());
 		 model.addAttribute("buffets", this.bs.findAll());
-		 return "/admin/Buffet/GestioneBuffet";
+		 return "admin/Buffet/GestioneBuffet";
 	  }
 	
 }

@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.catering.model.Buffet;
 import it.uniroma3.siw.catering.model.Chef;
+import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.repository.BuffetRepository;
 import it.uniroma3.siw.catering.service.BuffetService;
 import it.uniroma3.siw.catering.service.ChefService;
@@ -79,6 +80,7 @@ public class BuffetController {
 			buffet.setChef(chef);
 			this.bs.save(buffet);
 			model.addAttribute("buffet", buffet);
+			model.addAttribute("buffets", this.bs.findAll());
 			return "/admin/Buffet/GestioneBuffet";
 		}
 		return "/admin/Buffet/BuffetForm.html";
@@ -86,7 +88,8 @@ public class BuffetController {
 	@GetMapping("/admin/GestioneBuffet/delete/{id}")
 	  public String deleteBuffet(@PathVariable("id") Long id, Model model) {
 		 Buffet buffet=bs.findById(id);
-		 br.delete(buffet);
+		 bs.deleteBuffet(buffet.getId());
+		 model.addAttribute("buffets", this.bs.findAll());
 		 return "/admin/Buffet/GestioneBuffet";
 	  }
 	

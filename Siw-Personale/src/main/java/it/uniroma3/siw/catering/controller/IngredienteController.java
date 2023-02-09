@@ -35,6 +35,7 @@ public class IngredienteController {
 	public String getIngredienteForm(Model model) {
 		Ingrediente ingrediente=new Ingrediente();
 		model.addAttribute("ingrediente", ingrediente);
+		model.addAttribute("ingredienti", this.is.findAll());
 		return "/admin/Ingrediente/IngredienteForm";
 	}
 	@PostMapping("/admin/GestioneIngrediente/add")
@@ -65,6 +66,7 @@ public class IngredienteController {
 			nuovoIngrediente.setDescrizione(ingrediente.getDescrizione());
 			nuovoIngrediente.setOrigine(ingrediente.getOrigine());
 			this.is.save(nuovoIngrediente);
+			model.addAttribute("ingredienti", this.is.findAll());
 			return "/admin/Ingrediente/GestioneIngrediente";
 		}
 		
@@ -73,8 +75,9 @@ public class IngredienteController {
 	
 	/* metodo per eliminare un ingrediente e i piatti che lo contengono */
 	@GetMapping("/admin/GestioneIngrediente/delete/{ingred_id}")
-	public String deleteIngrediente(@PathVariable Long ingred_id) {
+	public String deleteIngrediente(@PathVariable Long ingred_id, Model model) {
 		this.is.deleteIngrediente(ingred_id);
+		model.addAttribute("ingredienti", this.is.findAll());
 		return "/admin/Ingrediente/GestioneIngrediente";
 	}
 	

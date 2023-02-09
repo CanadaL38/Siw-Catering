@@ -61,8 +61,8 @@ public class ChefController {
 		if(!bindingResults.hasErrors()) {
 			this.cs.aggiungiChef(chef);
 			model.addAttribute("chef", chef);
-
-			return "/admin/Admin_index";
+			model.addAttribute("chefs", this.cs.findAll());
+			return "/admin/Chef/GestioneChef.html";
 		}
 		return "admin/Chef/ChefForm.html";
 	}
@@ -86,6 +86,7 @@ public class ChefController {
 			nuovoChef.setNazionalita(chef.getNazionalita());
 			this.cs.editChef(nuovoChef);
 			model.addAttribute("chef", chef);
+			model.addAttribute("chefs", this.cs.findAll());
 			return "/admin/Chef/GestioneChef";
 		}
 		else
@@ -94,8 +95,9 @@ public class ChefController {
 	
 
 	@GetMapping("/admin/GestioneChef/delete/{id}")
-	public String deleteChef(@PathVariable("id") Long chef_id) {
+	public String deleteChef(@PathVariable("id") Long chef_id, Model model) {
 		this.cs.deleteChefById(chef_id);
+		model.addAttribute("chefs", this.cs.findAll());
 		return "/admin/Chef/GestioneChef";
 	}
 }

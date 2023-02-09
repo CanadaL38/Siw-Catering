@@ -145,10 +145,7 @@ footer {
   background-color: #641c34 ;
   width: 100%;
 }
-a{
-	color: var(--main-color) !important;
-	text-decoration: none;
-}
+
 
 #immagine_chef{
   background-image: url("/img/chef1.jpg");

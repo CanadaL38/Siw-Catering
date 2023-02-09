@@ -54,6 +54,7 @@ public class PiattoController {
 			ps.save(piatto);
 			model.addAttribute("piatto", this.ps.findAllByBuffet(buffet));
 			model.addAttribute("buffet_id", id);
+			model.addAttribute("buffets", this.bs.findAll());
 			return "/admin/Buffet/GestioneBuffet";
 		} else {
 

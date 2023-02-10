@@ -26,9 +26,10 @@ public class Buffet {
 	
 	private String descrizione;
 	
-	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE})
+	@ManyToOne
 	private Chef chef;
-	@OneToMany(mappedBy = "buffet", fetch = FetchType.EAGER)
+	
+	@OneToMany(mappedBy = "buffet")
 	protected List<Piatto> piatti;
 	
 	/*				COSTRUTTORI				*/

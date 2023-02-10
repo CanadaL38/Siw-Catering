@@ -83,7 +83,7 @@ public class BuffetController {
 			model.addAttribute("buffets", this.bs.findAll());
 			return "admin/Buffet/GestioneBuffet";
 		}
-		return "/admin/Buffet/BuffetForm.html";
+		return "admin/Buffet/BuffetForm.html";
 	}
 	@GetMapping("/admin/GestioneBuffet/delete/{id}")
 	  public String deleteBuffet(@PathVariable("id") Long id, Model model) {

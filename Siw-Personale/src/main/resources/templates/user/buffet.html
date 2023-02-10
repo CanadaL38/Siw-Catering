@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>I nostri Buffet</title>
-	<link rel="stylesheet" type="text/css" href="/css/index.css">
+	<link rel="stylesheet" type="text/css" href="/css/buffet.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -31,20 +31,56 @@
     	</div>
   	</div>
 	</nav> 
-
-		<h1 th:text="${buffet.nome}"></h1>
-		<h3 th:text="${buffet.descrizione}"></h3>
-		<div id="desc">
-			Piatti presenti nel buffet <strong th:text="${buffet.nome} "></strong>
+	</header>
+	<div class="container-informazioni" >
+	<div align="center"  class="gold-text">
+	<h1 th:text="${buffet.nome}" ></h1>
+		
+	</div>
+	<div align="center" >
+				<h3 th:text="${buffet.descrizione}"></h3>
+				</div>
+		<div align="center">
+			Piatti presenti nel buffet <strong th:text="${buffet.nome} " class="gold-text"></strong>
 		</div>
-
-		<ul>
+	<div align="center">
+		<ul >
 			<li th:each="piatto : ${buffet.piatti}"><a
 				th:href="@{'/user/all_Chefs/chef/buffet/piatto/'+ ${piatto.id}}"
 				th:text="${piatto.nome}"> </a></li>
 		</ul>
-		
-	</header>
+		</div>
+		</div>
+	
+	<footer class="footer">
+		<div id="contatti">
+			<div class="contatti">
+				<h2>CONTATTI</h2>
 
+				<div class="white-text">
+			      <strong>Indirizzo:</strong> Via Sistemi Informativi sul Web, 123, 00143 Roma (RM) 
+			    </div>
+
+			    <div class="white-text">
+			    	<strong>Telefono:</strong> 06 50513232
+			    </div>
+
+			    <div class="white-text">
+			    	<strong>Email:</strong> catering.siw@gmail.com
+			    </div>
+
+			</div>
+			<div class="contatti">
+				<h2>SOCIAL</h2>
+			    <div>
+			     <a class="other_button" href="https://www.instagram.com/"><strong>Instagram:</strong>@CateringSiw</a>
+			    </div>
+
+			    <div>
+			    	<a class="other_button" href="https://www.facebook.com/"><strong>Facebook:</strong>@CateringSiw</a>
+			    </div>
+			</div>
+		</div>
+	</footer>
 
 </body>

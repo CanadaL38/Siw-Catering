@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>I nostri Buffet</title>
-	<link rel="stylesheet" type="text/css" href="/css/index.css">
+	<link rel="stylesheet" type="text/css" href="/css/buffet.css">
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
@@ -30,10 +30,10 @@
     	</div>
   	</div>
 	</nav> 
-		<br>
+		
 		<div class="container-informazioni" th:each="buffet : ${buffets}">
 			<br>
-			<div>
+			<div  align="center"  class="gold-text">
 				<h1 th:text="${buffet.nome}">Nome Buffet</h1>
 			</div>
 			<div align="center">
@@ -41,13 +41,13 @@
 				<a th:text="${buffet.chef.nome} + ' ' + ${buffet.chef.cognome}" 
 				th:href="@{/user/all_Chefs/chef/{chef_id}(chef_id=${buffet.chef.id})}" class="simple_button outlined">chefNome chefCognome</a>
 			</div>
-			<div class="descrizione" align="center">
+			<div  align="center" >
 				<h3 th:text="${buffet.descrizione}">descrizione del buffet</h3>
 			</div>
-			<div align="center"><a class="btn btn-primary" th:href="@{/user/all_Chefs/chef/buffet/{id}(id=${buffet.id})}">vedi menù</a></div>
+			<div align="center"><a class="info_button" th:href="@{/user/all_Chefs/chef/buffet/{id}(id=${buffet.id})}">vedi menù</a></div>
 			<br>
 		</div>
-		<br>
+	
 	</header>
 	<footer class="footer">
 		<div id="contatti">
